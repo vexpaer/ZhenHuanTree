@@ -79,3 +79,29 @@ function milestoneShown(layer, id) {
 }
 
 let formatOption = (opt) => opt ? 'ON' : 'OFF'
+
+let devUnlocked = false
+
+function tryDevMode() {
+	if (devUnlocked) {
+		toggleDevSpeed()
+		return
+	}
+	const pwd = prompt("请输入开发者密码:")
+	if (pwd === "vexpaer") {
+		devUnlocked = true
+		toggleDevSpeed()
+	} else {
+		alert("密码错误!")
+	}
+}
+
+function toggleDevSpeed() {
+	if (!player) return
+	player.devSpeed = (player.devSpeed === 10) ? 1 : 10
+}
+
+function getDevButtonText() {
+	if (!devUnlocked) return "开发者模式"
+	return player && player.devSpeed === 10 ? "开发者模式: 10倍速 ON" : "开发者模式: 10倍速 OFF"
+}

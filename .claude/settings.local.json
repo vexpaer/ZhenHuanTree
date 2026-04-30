@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --check js/layers.js)",
+      "Bash(sed -n '/id: \"alr\"/,/},/p' C:/Users/vexpaer/Desktop/web/ZhenHuanTree/js/layers.js)",
+      "Bash(sed -n '/id: \"hf\"/,/},/p' C:/Users/vexpaer/Desktop/web/ZhenHuanTree/js/layers.js)",
+      "Bash(sed -n '/id: \"hh\"/,/},/p' C:/Users/vexpaer/Desktop/web/ZhenHuanTree/js/layers.js)",
+      "Bash(sed -n '/id: \"py\"/,/},/p' C:/Users/vexpaer/Desktop/web/ZhenHuanTree/js/layers.js)",
+      "Bash(node --check js/mod.js)",
+      "Bash(node *)",
+      "Bash(git checkout *)"
+    ]
+  }
+}
