@@ -55,6 +55,8 @@ function getPointGen() {
 	if (hasUpgrade("zh", 14)) gain = gain.times(player.zh.points.pow(2))
 	// 甄嬛 effect 加成
 	if (tmp.zh && tmp.zh.effect) gain = gain.times(tmp.zh.effect)
+	// 甄嬛效果加成（次要人物）
+	gain = gain.times(getZhEffectBoost ? getZhEffectBoost() : 1)
 	// 次要人物加成
 	gain = gain.times(getSideSilverBonus ? getSideSilverBonus() : 1)
 	return gain

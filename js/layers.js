@@ -101,26 +101,51 @@ const MAIN_CAST = [
 
 const SIDE_CHARACTERS = [
 	{ id: "cjx", name: "崔槿汐", symbol: "汐", main: "zh", position: -2, unlockUpgrade: 15,
+	  resourceName: "忠心",
+	  buyables: ["出谋划策", "察言观色", "深谋远虑"],
+	  buyableParams: [[5, 1.7, 1.07, 1.5], [25, 1.9, 1.09, 1.8], [100, 2.0, 1.10, 2.0]],
 	  upgrades: [
-		{ title: "出谋划策", desc: "银两获取速度 x2", cost: new Decimal("1e5") },
-		{ title: "忠心护主", desc: "银两获取速度 x5", cost: new Decimal("1e8") },
-		{ title: "智计无双", desc: "银两获取速度 x20", cost: new Decimal("1e12") },
+		{ title: "解锁出谋划策", desc: "开启可重复升级：出谋划策", cost: new Decimal("1e5") },
+		{ title: "忠心护主", desc: "银两获取速度 x5", cost: new Decimal(100), currency: "own" },
+		{ title: "解锁察言观色", desc: "开启可重复升级：察言观色", cost: new Decimal("1e8") },
+		{ title: "智计无双", desc: "银两获取速度 x20", cost: new Decimal("1e4"), currency: "own" },
+		{ title: "运筹帷幄", desc: "银两获取速度 x100", cost: new Decimal("1e8"), currency: "own" },
+		{ title: "决胜千里", desc: "所有次要人物资源获取速度 x5", cost: new Decimal("1e12"), currency: "own" },
 	  ]},
 	{ id: "hb", name: "浣碧", symbol: "碧", main: "zh", position: -1, unlockUpgrade: 16,
+	  resourceName: "姐妹情",
+	  buyables: ["悉心照料", "形影不离", "同心同德"],
+	  buyableParams: [[5, 1.7, 1.07, 1.5], [25, 1.9, 1.09, 1.8], [100, 2.0, 1.10, 2.0]],
 	  upgrades: [
-		{ title: "姐妹情深", desc: "剪纸小像获取速度 x2", cost: new Decimal("1e6") },
-		{ title: "悉心照料", desc: "剪纸小像获取速度 x5", cost: new Decimal("1e10") },
-		{ title: "形影不离", desc: "剪纸小像获取速度 x20", cost: new Decimal("1e15") },
+		{ title: "解锁悉心照料", desc: "开启可重复升级：悉心照料", cost: new Decimal("1e6") },
+		{ title: "姐妹情深", desc: "剪纸小像获取速度 x5", cost: new Decimal(100), currency: "own" },
+		{ title: "解锁形影不离", desc: "开启可重复升级：形影不离", cost: new Decimal("1e10") },
+		{ title: "不离不弃", desc: "剪纸小像获取速度 x20", cost: new Decimal("1e4"), currency: "own" },
+		{ title: "情同手足", desc: "剪纸小像获取速度 x100", cost: new Decimal("1e8"), currency: "own" },
+		{ title: "患难与共", desc: "甄嬛效果加成 x2", cost: new Decimal("1e12"), currency: "own" },
 	  ]},
 	{ id: "lz", name: "流朱", symbol: "朱", main: "zh", position: 1, unlockUpgrade: 17,
+	  resourceName: "护主心",
+	  buyables: ["忠心耿耿", "舍身护主", "誓死相随"],
+	  buyableParams: [[8, 1.8, 1.08, 1.6], [40, 2.0, 1.10, 2.0], [200, 2.1, 1.11, 2.2]],
 	  upgrades: [
-		{ title: "忠心耿耿", desc: "银两获取速度 x5", cost: new Decimal("1e8") },
-		{ title: "舍身护主", desc: "银两获取速度 x25", cost: new Decimal("1e14") },
+		{ title: "解锁忠心耿耿", desc: "开启可重复升级：忠心耿耿", cost: new Decimal("1e8") },
+		{ title: "赤胆忠心", desc: "银两获取速度 x10", cost: new Decimal(100), currency: "own" },
+		{ title: "解锁舍身护主", desc: "开启可重复升级：舍身护主", cost: new Decimal("1e12") },
+		{ title: "万死不辞", desc: "银两获取速度 x100", cost: new Decimal("1e6"), currency: "own" },
+		{ title: "碧血丹心", desc: "剪纸小像获取速度 x50", cost: new Decimal("1e10"), currency: "own" },
 	  ]},
 	{ id: "wty", name: "温太医", symbol: "温", main: "zh", position: 2, unlockUpgrade: 18,
+	  resourceName: "医术",
+	  buyables: ["医术高超", "情深义重", "仁心仁术"],
+	  buyableParams: [[10, 1.8, 1.08, 1.6], [50, 2.0, 1.10, 2.2], [250, 2.1, 1.11, 2.5]],
 	  upgrades: [
-		{ title: "医术高超", desc: "银两与剪纸小像获取速度 x3", cost: new Decimal("1e10") },
-		{ title: "情深义重", desc: "银两与剪纸小像获取速度 x10", cost: new Decimal("1e18") },
+		{ title: "解锁医术高超", desc: "开启可重复升级：医术高超", cost: new Decimal("1e10") },
+		{ title: "悬壶济世", desc: "银两与剪纸小像获取速度 x5", cost: new Decimal(100), currency: "own" },
+		{ title: "解锁情深义重", desc: "开启可重复升级：情深义重", cost: new Decimal("1e14") },
+		{ title: "妙手回春", desc: "银两与剪纸小像获取速度 x20", cost: new Decimal("1e4"), currency: "own" },
+		{ title: "华佗再世", desc: "银两与剪纸小像获取速度 x10", cost: new Decimal("1e8"), currency: "own" },
+		{ title: "情深入骨", desc: "甄嬛效果加成 x3", cost: new Decimal("1e12"), currency: "own" },
 	  ]},
 	{ id: "cyue", name: "采月", symbol: "月", main: "smz", position: 1, unlockUpgrade: 11,
 	  upgrades: [
@@ -156,10 +181,13 @@ function getSideSilverBonus() {
 	if (hasUpgrade("cjx", 11)) mult = mult.times(2)
 	if (hasUpgrade("cjx", 12)) mult = mult.times(5)
 	if (hasUpgrade("cjx", 13)) mult = mult.times(20)
+	if (hasUpgrade("cjx", 15)) mult = mult.times(100)
 	if (hasUpgrade("lz", 11)) mult = mult.times(5)
 	if (hasUpgrade("lz", 12)) mult = mult.times(25)
+	if (hasUpgrade("lz", 14)) mult = mult.times(100)
 	if (hasUpgrade("wty", 11)) mult = mult.times(3)
 	if (hasUpgrade("wty", 12)) mult = mult.times(10)
+	if (hasUpgrade("wty", 15)) mult = mult.times(10)
 	if (hasUpgrade("cyue", 12)) mult = mult.times(2)
 	if (hasUpgrade("bq", 12)) mult = mult.times(3)
 	if (hasUpgrade("sz", 12)) mult = mult.times(4)
@@ -175,8 +203,11 @@ function getSideZhGainMult() {
 	if (hasUpgrade("hb", 11)) mult = mult.times(2)
 	if (hasUpgrade("hb", 12)) mult = mult.times(5)
 	if (hasUpgrade("hb", 13)) mult = mult.times(20)
+	if (hasUpgrade("hb", 15)) mult = mult.times(100)
+	if (hasUpgrade("lz", 15)) mult = mult.times(50)
 	if (hasUpgrade("wty", 11)) mult = mult.times(3)
 	if (hasUpgrade("wty", 12)) mult = mult.times(10)
+	if (hasUpgrade("wty", 15)) mult = mult.times(10)
 	return mult
 }
 
@@ -197,6 +228,23 @@ function getSideResourceBonus(mainId) {
 		if (hasUpgrade("jq", 11)) mult = mult.times(2)
 		if (hasUpgrade("hc", 11)) mult = mult.times(3)
 	}
+	return mult
+}
+
+// ============== 所有次要人物资源获取速度加成（崔槿汐 upgrade 16） ==============
+
+function getSideAllResourceBonus() {
+	let mult = new Decimal(1)
+	if (hasUpgrade("cjx", 16)) mult = mult.times(5)
+	return mult
+}
+
+// ============== 甄嬛效果加成（浣碧 upgrade 16, 温太医 upgrade 16） ==============
+
+function getZhEffectBoost() {
+	let mult = new Decimal(1)
+	if (hasUpgrade("hb", 16)) mult = mult.times(2)
+	if (hasUpgrade("wty", 16)) mult = mult.times(3)
 	return mult
 }
 
@@ -569,6 +617,12 @@ MAIN_CAST.forEach((_, index) => createMainLayer(index))
 // ============== 次要人物层工厂 ==============
 
 function createSideLayer(config) {
+	const resourceName = config.resourceName || (config.name + "情谊")
+	const hasBuyables = config.buyables && config.buyables.length > 0
+	const p1 = config.buyableParams ? config.buyableParams[0] : null
+	const p2 = config.buyableParams ? config.buyableParams[1] : null
+	const p3 = config.buyableParams && config.buyableParams.length > 2 ? config.buyableParams[2] : null
+
 	addLayer(config.id, {
 		name: config.name,
 		symbol: config.symbol,
@@ -576,37 +630,134 @@ function createSideLayer(config) {
 		position: config.position,
 		row: MAIN_CAST.findIndex(m => m.id === config.main),
 		type: "none",
+		resource: resourceName,
 		startData() {
 			return {
-				unlocked: false,
+				unlocked: true,
 				points: new Decimal(0),
+				best: new Decimal(0),
+				total: new Decimal(0),
+				spentOnBuyables: new Decimal(0),
+				buyables: {},
 				upgrades: [],
+				milestones: [],
 			}
 		},
 		branches: [[config.main, "#8f8570", 2]],
-		upgrades: Object.fromEntries(config.upgrades.map((u, i) => [
-			11 + i,
-			{
-				title: u.title,
-				description: u.desc,
-				cost: u.cost,
-				currencyDisplayName: "银两",
-				currencyInternalName: "points",
+		update(diff) {
+			let gain = new Decimal(diff)
+			gain = gain.times(player.points.add(1).log10().add(1).pow(0.5))
+			if (hasBuyables) {
+				if (p1) gain = gain.times(buyableEffect(config.id, 11))
+				if (p2) gain = gain.times(buyableEffect(config.id, 12))
+				if (p3) gain = gain.times(buyableEffect(config.id, 13))
 			}
-		])),
+			if (player[config.id].best.gte(100)) gain = gain.times(2)
+			if (player[config.id].best.gte(1e4)) gain = gain.times(3)
+			if (player[config.id].best.gte(1e8)) gain = gain.times(10)
+			if (player[config.id].best.gte(1e12)) gain = gain.times(50)
+			gain = gain.times(getSideAllResourceBonus())
+			player[config.id].points = player[config.id].points.add(gain)
+			player[config.id].best = Decimal.max(player[config.id].best, player[config.id].points)
+			player[config.id].total = player[config.id].total.add(gain)
+		},
+		upgrades: Object.fromEntries(config.upgrades.map((u, i) => {
+			const useOwn = u.currency === "own"
+			return [
+				11 + i,
+				{
+					title: u.title,
+					description: u.desc,
+					cost: u.cost,
+					currencyDisplayName: useOwn ? resourceName : "银两",
+					currencyInternalName: "points",
+					...(useOwn ? { currencyLayer: config.id } : {}),
+				}
+			]
+		})),
+		buyables: hasBuyables ? {
+			showRespec: false,
+			11: p1 ? {
+				title: config.buyables[0],
+				cost(x) { return buyableCost(x, p1) },
+				effect(x) { return Decimal.pow(p1[3], x) },
+				display() {
+					const data = tmp[this.layer].buyables[this.id]
+					const amt = getBuyableAmount(this.layer, this.id)
+					return "等级: " + formatWhole(amt) + "\n" +
+						"成本: " + format(data.cost) + " " + resourceName + "\n" +
+						"效果: " + resourceName + "获取 x" + format(data.effect)
+				},
+				unlocked() { return hasUpgrade(config.id, 11) },
+				canAfford() {
+					return player[this.layer].points.gte(tmp[this.layer].buyables[this.id].cost)
+				},
+				buy() {
+					const cost = tmp[this.layer].buyables[this.id].cost
+					player[this.layer].points = player[this.layer].points.sub(cost)
+					setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+					player[this.layer].spentOnBuyables = player[this.layer].spentOnBuyables.add(cost)
+				},
+			} : null,
+			12: p2 ? {
+				title: config.buyables[1],
+				cost(x) { return buyableCost(x, p2) },
+				effect(x) { return Decimal.pow(p2[3], x) },
+				display() {
+					const data = tmp[this.layer].buyables[this.id]
+					const amt = getBuyableAmount(this.layer, this.id)
+					return "等级: " + formatWhole(amt) + "\n" +
+						"成本: " + format(data.cost) + " " + resourceName + "\n" +
+						"效果: " + resourceName + "获取 x" + format(data.effect)
+				},
+				unlocked() { return hasUpgrade(config.id, 13) },
+				canAfford() {
+					return player[this.layer].points.gte(tmp[this.layer].buyables[this.id].cost)
+				},
+				buy() {
+					const cost = tmp[this.layer].buyables[this.id].cost
+					player[this.layer].points = player[this.layer].points.sub(cost)
+					setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+					player[this.layer].spentOnBuyables = player[this.layer].spentOnBuyables.add(cost)
+				},
+			} : null,
+			13: p3 ? {
+				title: config.buyables[2],
+				cost(x) { return buyableCost(x, p3) },
+				effect(x) { return Decimal.pow(p3[3], x) },
+				display() {
+					const data = tmp[this.layer].buyables[this.id]
+					const amt = getBuyableAmount(this.layer, this.id)
+					return "等级: " + formatWhole(amt) + "\n" +
+						"成本: " + format(data.cost) + " " + resourceName + "\n" +
+						"效果: " + resourceName + "获取 x" + format(data.effect)
+				},
+				unlocked() { return hasUpgrade(config.id, 11 + config.upgrades.length - 2) },
+				canAfford() {
+					return player[this.layer].points.gte(tmp[this.layer].buyables[this.id].cost)
+				},
+				buy() {
+					const cost = tmp[this.layer].buyables[this.id].cost
+					player[this.layer].points = player[this.layer].points.sub(cost)
+					setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+					player[this.layer].spentOnBuyables = player[this.layer].spentOnBuyables.add(cost)
+				},
+			} : null,
+		} : {},
+		milestones: {},
 		doReset(resettingLayer) {
 			if (layers[resettingLayer].row > this.row) {
 				const mainIdx = MAIN_CAST.findIndex(m => m.id === config.main)
 				const protector = (mainIdx >= 0 && mainIdx + 2 < MAIN_CAST.length) ? MAIN_CAST[mainIdx + 2] : null
 				if (!protector || !hasUpgrade(protector.id, 31)) {
-					layerDataReset(this.layer, ["upgrades"])
+					layerDataReset(this.layer, ["best", "upgrades"])
 				}
 			}
 		},
-			layerShown() {
+		layerShown() {
 			return tmp[config.main] && tmp[config.main].layerShown && hasUpgrade(config.main, config.unlockUpgrade || 11)
 		},
-		tabFormat: ["upgrades"],
+		tabFormat: ["main-display", "resource-display", "buyables", "upgrades"],
 	})
 }
 
