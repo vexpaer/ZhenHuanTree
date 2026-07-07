@@ -11,11 +11,19 @@ let modInfo = {
 }
 
 let VERSION = {
-	num: "0.3",
-	name: "节奏重塑",
+	num: "0.4",
+	name: "系统重构",
 }
 
+const ENDGAME_SILVER_GOAL = new Decimal("1e200000")
+
 let changelog = `<h1>更新日志:</h1><br>
+	<h3>v0.4 - 系统重构</h3><br>
+		- 银两公式改为基础来源、指数、倍率、后置倍率分段计算。<br>
+		- 可重复购买项改为乘积型成本、免费等级、效果软上限与 Shift 买最大。<br>
+		- 主线门槛恢复为正式长流程，并加入本层资源与关键循环条件。<br>
+		- 全主线和次要人物加入专属机制、逐步保留与自动化路线。<br>
+		- 调快前期剪纸节奏，降低不可达节点价格，终局改为银两目标。<br>
 	<h3>v0.3 - 节奏重塑</h3><br>
 		- 重新设计所有可重复购买项的成本公式：自然停购点 (~8-12级)。<br>
 		- 打通人物加成链：各层 effect 实际生效，层层叠加。<br>
@@ -27,7 +35,7 @@ let changelog = `<h1>更新日志:</h1><br>
 	<h3>v0.1 - 后宫开局</h3><br>
 		- 重构为甄嬛传主题的人物树。`
 
-let winText = `你已走到后宫权力尽头，甄嬛树当前版本通关。`
+let winText = `银两已达到终局目标，甄嬛树当前版本通关。`
 
 var doNotCallTheseFunctionsEveryTick = ["blowUpEverything"]
 
@@ -40,25 +48,23 @@ function canGenPoints() {
 }
 
 // ============== 银两生成公式 ==============
-// 基础: 剪纸小像数量
-// 升级 11: ×剪纸小像数量
-// 升级 14: ×剪纸小像数量^2
-// 甄嬛 effect: ×(剪纸小像+1)^0.35
-// 次要人物加成: ×getSideSilverBonus()
+// 银两/秒 = (剪纸来源 + 1)^指数 * 前置倍率 * 后置倍率
+// 剪纸来源、指数、倍率由 js/layers.js 中的工具函数统一计算。
 
 function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 	if (!player.zh) return new Decimal(0)
-	let gain = player.zh.points
-	if (hasUpgrade("zh", 11)) gain = gain.times(player.zh.points)
-	if (hasUpgrade("zh", 14)) gain = gain.times(player.zh.points.pow(2))
-	// 甄嬛 effect 加成
-	if (tmp.zh && tmp.zh.effect) gain = gain.times(tmp.zh.effect)
-	// 甄嬛效果加成（次要人物）
-	gain = gain.times(getZhEffectBoost ? getZhEffectBoost() : 1)
-	// 次要人物加成
-	gain = gain.times(getSideSilverBonus ? getSideSilverBonus() : 1)
+	const source = typeof getSilverSource === "function" ? getSilverSource() : player.zh.points
+	const exp = typeof getSilverExp === "function" ? getSilverExp() : new Decimal(1)
+	let gain = source.add(1).pow(exp)
+	if (typeof getSilverMult === "function") gain = gain.times(getSilverMult())
+	if (typeof getSilverPostMult === "function") gain = gain.times(getSilverPostMult())
+	if (typeof softcap === "function") {
+		const start = new Decimal("1e10000").times(typeof getGlobalSoftcapStartMult === "function" ? getGlobalSoftcapStartMult() : 1)
+		const power = typeof getSilverSoftcapPower === "function" ? getSilverSoftcapPower() : new Decimal(0.45)
+		gain = softcap(gain, start, power)
+	}
 	return gain
 }
 
@@ -67,15 +73,15 @@ function addedPlayerData() { return {
 
 var displayThings = [
 	function() {
-		if (!player.py || player.py.best.lt(1)) {
-			return "目标：沿人物主线推进，最终获得 1 纯元皇后势力"
+		if (player.points.lt(ENDGAME_SILVER_GOAL)) {
+			return "目标：完成主线并让银两达到 " + format(ENDGAME_SILVER_GOAL)
 		}
-		return "主线完成：可继续堆叠势力与购买项"
+		return "终局达成：银两达到 " + format(ENDGAME_SILVER_GOAL)
 	},
 ]
 
 function isEndgame() {
-	return player.py && player.py.best.gte(1)
+	return player.points.gte(ENDGAME_SILVER_GOAL)
 }
 
 var backgroundStyle = {
