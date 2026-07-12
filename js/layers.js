@@ -820,6 +820,7 @@ function createMainLayer(index) {
 		name: current.name,
 		symbol: current.symbol,
 		position: 0,
+		style: getCharacterBackgroundStyle(current),
 		startData() {
 			return {
 				unlocked: index === 0,
@@ -992,6 +993,7 @@ function createSideLayer(config) {
 		name: config.name,
 		symbol: config.symbol,
 		color: "#b7b1a1",
+		style: getCharacterBackgroundStyle(config),
 		position: config.position,
 		row: MAIN_CAST.findIndex(m => m.id === config.main),
 		type: "none",
